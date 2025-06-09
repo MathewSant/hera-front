@@ -1,14 +1,17 @@
 import { create } from 'zustand';
 import Parse from '@/lib/parseConfig';
-
 export const useUserStore = create((set) => ({
-  user: null,
+  user: undefined, // undefined indica "não verificado ainda", null é "deslogado"
 
   verificarLogin: async () => {
     const user = await Parse.User.currentAsync();
-    if (!user) return null;
-    set({ user });
-    return user;
+    if (user) {
+      set({ user });
+      return user;
+    } else {
+      set({ user: null });
+      return null;
+    }
   },
 
   logout: async () => {

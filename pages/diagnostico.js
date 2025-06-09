@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useUserStore } from '@/stores/userStore';
+import { withAuth } from '@/hoc/withAuth';
 
-export default function Diagnostico() {
+function Diagnostico() {
   const router = useRouter();
-  const { user, verificarLogin } = useUserStore();
+
   const [imagem, setImagem] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [resultado, setResultado] = useState(null);
   const [carregando, setCarregando] = useState(false);
-
-  useEffect(() => {
-    const init = async () => {
-      const usuario = await verificarLogin();
-      if (!usuario) router.push('/login');
-    };
-    init();
-  }, [router, verificarLogin]);
 
   const handleImagemChange = (e) => {
     const file = e.target.files[0];
@@ -36,8 +28,6 @@ export default function Diagnostico() {
       setCarregando(false);
     }, 2000);
   };
-
-  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -94,3 +84,5 @@ export default function Diagnostico() {
     </div>
   );
 }
+
+export default withAuth(Diagnostico);
