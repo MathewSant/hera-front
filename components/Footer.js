@@ -11,7 +11,7 @@ export default function Footer() {
         <p className="flex items-center justify-center gap-1 mt-1 text-green-800">
           Feito com 💚 pelo <span className="font-semibold">Grupo 11</span>{' '}
           <a
-            href="https://github.com/mateus-santiago"
+            href="https://github.com/MathewSant/Hera"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 hover:text-green-600 transition"
