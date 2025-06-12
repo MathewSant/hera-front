@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useCrud } from '@/hooks/useCrud';
 import CrudFormList from '@/components/CrudFormList';
 import { withAuth } from '@/hoc/withAuth';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 function RecomendacoesPage() {
   const campos = ['nome', 'descricao', 'categoria'];
@@ -22,6 +23,7 @@ function RecomendacoesPage() {
   }, []);
 
   return (
+    <ProtectedLayout>
     <CrudFormList
       titulo="Recomendações de Bioinsumos"
       campos={campos}
@@ -50,6 +52,7 @@ function RecomendacoesPage() {
         </>
       )}
     />
+    </ProtectedLayout>
   );
 }
 

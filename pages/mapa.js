@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { withAuth } from '@/hoc/withAuth';
 import { useRouter } from 'next/router';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 const MapaLeaflet = dynamic(() => import('@/components/MapaLeaflet'), { ssr: false });
 
@@ -8,7 +9,8 @@ function MapaPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <ProtectedLayout>
+    <div className="bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-6">
         <h2 className="text-2xl font-bold text-green-700 mb-4">Mapeamento e Alertas Locais</h2>
 
@@ -26,6 +28,7 @@ function MapaPage() {
         </button>
       </div>
     </div>
+    </ProtectedLayout>
   );
 }
 
